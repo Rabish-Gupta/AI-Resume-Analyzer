@@ -38,25 +38,6 @@ def calculate_similarity(resume, jd):
     return round(score * 100, 2)
 
 
-# # 🧠 Extract skills
-# def extract_skills(text):
-#     found_skills = []
-#     for skill in SKILLS:
-#         if skill in text:
-#             found_skills.append(skill)
-#     return found_skills
-
-# def extract_skills_advanced(text):
-#     tokens = word_tokenize(text.lower())
-#     found_skills = []
-
-#     for skill in SKILLS:
-#         if skill in text:
-#             found_skills.append(skill)
-
-#     return list(set(found_skills))
-
-
 def normalize_text(text):
     text = text.lower()
     text = re.sub(r"[^a-zA-Z\s]", " ", text)
@@ -132,15 +113,6 @@ def get_common_keywords(resume, jd):
     return list(resume_words.intersection(jd_words))
 
 
-# def ats_score(resume_skills, jd_skills, similarity):
-#     skill_score = (len(set(resume_skills) & set(jd_skills)) / (len(jd_skills)+1)) * 50
-#     keyword_score = similarity * 0.3
-#     format_score = 20  # fixed for now
-
-#     total = skill_score + keyword_score + format_score
-#     return round(total, 2)
-
-
 def ats_score(resume_skills, jd_skills, similarity):
     if len(jd_skills) == 0:
         skill_score = 0
@@ -166,3 +138,6 @@ def advanced_suggestions(sections, missing_skills):
         tips.append(f"Learn and add {skill}")
 
     return tips
+
+
+print("utils loaded")
