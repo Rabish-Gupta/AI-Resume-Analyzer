@@ -42,16 +42,6 @@ page = st.sidebar.radio("Go to", ["Analyzer", "About"])
 
 st.set_page_config(page_title="AI Resume Analyzer")
 
-# st.title("📄 AI Resume Analyzer")
-
-
-# # Upload resume
-# resume_file = st.file_uploader("Upload your Resume (PDF)", type=["pdf"])
-
-# # Job description input
-# jd = st.text_area("Paste Job Description")
-
-# if st.button("Analyze"):
 if page == "Analyzer":
 
     st.title("🚀 AI Resume Analyzer")
@@ -92,9 +82,9 @@ if page == "Analyzer":
             jd_skills = extract_skills_advanced(jd_clean)
 
             missing_skills = list(set(jd_skills) - set(resume_skills))
-            print("Missing Skills:", missing_skills)
+            # print("Missing Skills:", missing_skills)
             # Suggestions
-            # suggestions = generate_suggestions(missing_skills, score)
+
             # Detect sections
             sections = detect_sections(resume_text)
 
@@ -117,19 +107,10 @@ if page == "Analyzer":
             col2.metric("📈 ATS Score", f"{ats}")
             col3.metric("🎯 Role", role)
 
-            # st.subheader("✅ Skills Found")
-            # st.write(resume_skills)
             common = get_common_keywords(resume_clean, jd_clean)
-
-            # st.subheader("🔑 Matching Keywords")
-            # st.write(common[:20])
 
             st.subheader("❌ Missing Skills")
             st.write(missing_skills)
-
-            # st.subheader("💡 Suggestions")
-            # for s in suggestions:
-            #     st.write("-", s)
 
             col1, col2 = st.columns(2)
 
@@ -144,10 +125,6 @@ if page == "Analyzer":
                 st.subheader("❌ Missing Skills")
                 st.error(", ".join(missing_skills))
 
-                # st.subheader("💡 Suggestions")
-                # for s in suggestions:
-                #     st.write("➡️", s)
-
                 st.subheader("💡 Suggestions")
 
                 if suggestions:
@@ -157,9 +134,6 @@ if page == "Analyzer":
                     st.success("Your resume looks strong! 🎉")
 
             sections = detect_sections(resume_text)
-
-            # st.subheader("📂 Resume Sections")
-            # st.json(sections)
 
             with st.expander("📂 View Resume Sections"):
                 st.json(sections)
@@ -177,13 +151,11 @@ if page == "Analyzer":
 elif page == "About":
     st.title("📘 About This Project")
 
-    st.write(
-        """
+    st.write("""
             This AI Resume Analyzer uses NLP techniques like:
             - TF-IDF Vectorization
             - Cosine Similarity
             - Skill Extraction
 
             Built to help students improve their resumes.
-            """
-    )
+            """)
